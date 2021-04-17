@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="common_product_brand_search_form_view" model="ir.ui.view">
+        <field name="name">common.product.brand.ept.search.form</field>
+        <field name="model">common.product.brand.ept</field>
+        <field name="arch" type="xml">
+            <search string="Product Brand">
+                <field name="name"/>
+                <field name="partner_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_common_product_brand_form">
+        <field name="name">common.product.brand.ept.form</field>
+        <field name="model">common.product.brand.ept</field>
+        <field name="arch" type="xml">
+            <form string="Product Brand" version="7.0">
+                <sheet>
+                    <field name="logo" widget="image" class="oe_avatar oe_right"/>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name" string="Brand Name"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="partner_id"/>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_common_product_brand_tree">
+        <field name="name">common.product.brand.ept.tree</field>
+        <field name="model">common.product.brand.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Product Brand">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="partner_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="common_product_search_form_view" model="ir.ui.view">
+        <field name="name">product.search.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="after">
+                <field name="product_brand_id"/>
+                <filter string="Brand" name="groupby_brand" domain="[]"
+                        context="{'group_by':'product_brand_id'}"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="common_product_template_form_brand_add">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="product_brand_id" placeholder="Brand"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_common_product_brand">
+        <field name="name">Product Brands</field>
+        <field name="res_model">common.product.brand.ept</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Brand Management" id="menu_product_brand_management"
+              action="action_common_product_brand" parent="sale.prod_config_main"/>
+</odoo>

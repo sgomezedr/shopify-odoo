@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <function model="shopify.instance.ept" name="set_shopify_order_status_ids"/>
+        <!--Added below function to set the after order import date in the existing instance.-->
+        <function model="shopify.instance.ept" name="set_shopify_import_after_date"/>
+    </data>
+
+</odoo>

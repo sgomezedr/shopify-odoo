@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend_inherit" inherit_id="web.assets_backend"
+              name="Backend Assets (used in backend interface)">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss"
+                  href="/common_connector_library/static/src/scss/graph_widget_ept.scss"/>
+            <link rel="stylesheet" href="/common_connector_library/static/src/scss/on_boarding_wizards.css"/>
+            <script type="text/javascript"
+                    src="/common_connector_library/static/src/js/graph_widget_ept.js"/>
+        </xpath>
+    </template>
+</odoo>
